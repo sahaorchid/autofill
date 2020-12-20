@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" http-equiv="refresh" content="5">
+    <title>TIME TOURS project</title>
+</head>
+
+<body>
+    <div style="padding-left:500px ;">
+        <label style="padding-right:60px ;">Name</label>
+        <input type="text" id="name"><br><br>
+        <label style="padding-right:13px ;">Qualification</label>
+        <input type="text" id="quali"><br><br>
+        <div id="addinput">
+            <label style="padding-right:43px ;">Hobbies</label>
+            <input type="text" id="hobbies">
+        </div>
+        <button id="btn" style="border: none;background-color:inherit;margin-left: 280px;" onclick="addhobbies()">+ Add
+            Hobies
+        </button>
+    </div>
+
+
+        <div style="width: 800px;border: 4px solid black;padding-left: 10px;margin-top: 45px;margin-left: 300px;">
+            <span>I,</span> <textarea id="tarea1" rows="1"
+                style="border-top-color: white;overflow: hidden;border-left: white;border-right: white;"></textarea>,
+            <span>would like to apply for an internship at your organisation.</span><br><br><br>
+            <span>My Qualification is</span> <textarea id="tarea2" rows="1"
+                style="overflow: hidden;border-top-color: white;border-left: white;border-right: white;"></textarea><span>.</span><br><br>
+
+            <div id="newtarea">
+                <span id="hspan">My hobbies are</span>
+                <textarea id="tarea3" rows="1"
+                    style="overflow: hidden;border-top-color: white;border-left: white;border-right: white;"></textarea>
+            </div>
+            <p>Thanking you,</p>
+            <p>Your Sincerely</p>
+            <textarea id="tarea7" rows="1"
+                    style="overflow: hidden;border-top-color: white;border-left: white;border-right: white;"></textarea>
+        </div>
+    
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <script>
+        var i = 0;
+        function addhobbies() {
+            //cheak how many times the hobiies are added
+            i++;
+            //if more than three hobbies are added
+            if (i >= 3) {
+                alert("not allowed");
+                return;
+            }
+
+            var newelement = document.createElement("input");
+            if (i == 1) {
+                newelement.setAttribute("id", "hobbies2")
+            }
+            if (i == 2) {
+                newelement.setAttribute("id", "hobbies3")
+            }
+            var newbr = document.createElement("br");
+            var newbr2 = document.createElement("br");
+            document.getElementById("addinput").appendChild(newbr);
+            document.getElementById("addinput").appendChild(newbr2);
+            document.getElementById("addinput").appendChild(newelement).style.marginLeft = "100px";
+
+            //new textarea added for new add hobbies
+            if (i == 1) {
+                var para = document.createElement("span");
+                para.setAttribute("id", "span");
+                var node = document.createTextNode("&");
+                document.getElementById("newtarea").appendChild(para).appendChild(node);
+
+
+                var newtarea = document.createElement("textarea");
+                newtarea.setAttribute("id", "tarea4");
+                document.getElementById("newtarea").appendChild(newtarea);
+                newtarea.style.borderLeftColor = "white";
+                newtarea.style.borderRightColor = "white";
+                newtarea.style.borderTopColor = "white";
+                newtarea.rows = 1;
+                $("#hobbies2").on("input", function () {
+                    hob2 = ($(this).val());
+                // Print entered value in a div box
+                    document.getElementById("tarea4").innerHTML = ($(this).val());
+                });
+
+            }
+            $("#btn").click(function () {
+                var str = $("#hobbies2").val();
+                document.getElementById("tarea5").innerHTML = str;
+
+            });
+//if the number of hobbies is two
+            if (i == 2) {
+                var tarea = document.getElementById("tarea4");
+                tarea.remove();
+                var span = document.getElementById("span")
+                span.remove();
+                var para = document.createElement("span");
+                var node = document.createTextNode(",");
+                document.getElementById("newtarea").appendChild(para).appendChild(node);
+                var newtarea = document.createElement("textarea");
+                newtarea.setAttribute("id", "tarea5");
+                document.getElementById("newtarea").appendChild(newtarea);
+                newtarea.style.borderLeftColor = "white";
+                newtarea.style.borderRightColor = "white";
+                newtarea.style.borderTopColor = "white";
+                newtarea.rows = 1;
+
+
+
+                var para1 = document.createElement("span");
+                var node1 = document.createTextNode("&");
+                document.getElementById("newtarea").appendChild(para1).appendChild(node1);
+
+
+                var newtarea1 = document.createElement("textarea");
+                newtarea1.setAttribute("id", "tarea6");
+                document.getElementById("newtarea").appendChild(newtarea1);
+                newtarea1.style.borderLeftColor = "white";
+                newtarea1.style.borderRightColor = "white";
+                newtarea1.style.borderTopColor = "white";
+                newtarea1.rows = 1;
+                $("#hobbies3").on("input", function () {
+                    // Print entered value in a div box
+                    document.getElementById("tarea6").innerHTML = ($(this).val());
+                });
+
+            }
+
+        }
+
+        $(document).ready(function () {
+            $("#name").on("input", function () {
+                // Print entered value in a div box
+                document.getElementById("tarea1").innerHTML = ($(this).val());
+                document.getElementById("tarea7").innerHTML= ($(this).val());
+            });
+            
+            $("#quali").on("input", function () {
+                // Print entered value in a div box
+                document.getElementById("tarea2").innerHTML = ($(this).val());
+            });
+            $("#hobbies").on("input", function () {
+                // Print entered value in a div box
+                document.getElementById("tarea3").innerHTML = ($(this).val());
+            });
+        });
+
+    </script>
+
+
+</body>
+
+</html>
